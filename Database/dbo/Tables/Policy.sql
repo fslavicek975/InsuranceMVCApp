@@ -1,0 +1,7 @@
+﻿CREATE TABLE [dbo].[Policy]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY, 
+    [PolicyNumber] NVARCHAR(15) NOT NULL, 
+    [PolicyAmount] DECIMAL NOT NULL,
+    PartnerId INT FOREIGN KEY REFERENCES Partner(Id) NULL
+)

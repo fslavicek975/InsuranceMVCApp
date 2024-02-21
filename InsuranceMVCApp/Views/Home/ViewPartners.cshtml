@@ -1,0 +1,90 @@
+﻿@model IEnumerable<InsuranceMVCApp.Models.Partner>
+
+@{
+    ViewBag.Title = "ViewPartners";
+}
+
+<h2>View Partners</h2>
+
+<p>
+    @Html.ActionLink("Create New Partner", "AddNewPartner")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Full Name
+        </th>
+
+        <th>
+            Address
+        </th>
+        <th>
+            Partner Number
+        </th>
+        <th>
+            Croatian Pin
+        </th>
+        <th>
+            Partner Type Id
+        </th>
+        <th>
+            Created At Utc
+        </th>
+        <th>
+            Created By
+        </th>
+        <th>
+            Is Foreign
+        </th>
+        <th>
+            External Code
+        </th>
+        <th>
+            Gender
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.OrderByDescending(x => x.CreatedAtUtc))
+    {
+       <tr class="@((DateTime.UtcNow - item.CreatedAtUtc).TotalSeconds < 5 ? "table-success" : "")">
+           <td>
+               @Html.DisplayFor(modelItem => item.FullName)
+           </td>
+
+           <td>
+               @Html.DisplayFor(modelItem => item.Address)
+           </td>
+           <td>
+               @Html.DisplayFor(modelItem => item.PartnerNumber)
+           </td>
+           <td>
+               @Html.DisplayFor(modelItem => item.CroatianPIN)
+           </td>
+           <td>
+               @Html.DisplayFor(modelItem => item.PartnerTypeId)
+           </td>
+           <td>
+               @Html.DisplayFor(modelItem => item.CreatedAtUtc)
+           </td>
+           <td>
+               @Html.DisplayFor(modelItem => item.CreateByUser)
+           </td>
+           <td>
+               @Html.DisplayFor(modelItem => item.IsForeign)
+           </td>
+           <td>
+               @Html.DisplayFor(modelItem => item.ExternalCode)
+           </td>
+           <td>
+               @Html.DisplayFor(modelItem => item.Gender)
+           </td>
+           <td>
+
+               @Html.ActionLink("Details", "Details", new { id = item.Id })
+               @Html.ActionLink("Add Policy", "AddNewPolicy", new { id = item.Id })
+           </td>
+       </tr>
+    }
+
+</table>
